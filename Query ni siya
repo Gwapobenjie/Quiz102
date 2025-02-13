@@ -1,0 +1,38 @@
+from rental.models import Rental, Car, RentalLocation
+from django.contrib.auth.models import User
+
+Users ni siya
+users = [
+    User.objects.create_user(username="Benjie1", email="plazabenjie1@gmail.com", password="labyo123"),
+    User.objects.create_user(username="Benjie2", email="benjiegwapo@email.com", password="opkors123"),
+    User.objects.create_user(username="jieben1", email="Gwapobenjie@email.com", password="gwapings123"),
+    User.objects.create_user(username="jieben", email="SuperPogi@email.com", password="Pogi123"),
+    User.objects.create_user(username="Gwapo", email="DakobunalBenjie@email.com", password="Bunal123"),
+]
+
+kani Fetch Users
+Benjie1 = User.objects.get(username="Benjie1")
+Benjie2 = User.objects.get(username="Benjie2")
+admin_user = User.objects.get(username="admin")  
+jieben = User.objects.get(username="jieben")
+Gwapo = User.objects.get(username="Gwapo")
+
+kani Cars
+Civic = Car.objects.create(name="Civic", model="Honda", year=2020, price=100.00)
+misyobibi = Car.objects.create(name="misyobibi", model="Toyota", year=2021, price=120.00)
+lancer = Car.objects.create(name="lancer", model="Mitsubishi", year=2019, price=90.00)
+
+kani Locations
+cdo = RentalLocation.objects.create(name="CDO")
+malaybalay = RentalLocation.objects.create(name="Malaybalay")
+davao = RentalLocation.objects.create(name="Davao")
+
+kani Rentals
+rentals = [
+    Rental(car=Civic, renter=Benjie1, payment="not yet", sale_price=100.00, rental_location=cdo, start_date="2023-02-13", end_date="2025-02-25"),
+    Rental(car=lancer, renter=Benjie2, payment="not yet", sale_price=100.00, rental_location=malaybalay, start_date="2025-02-13", end_date="2026-02-25"),
+    Rental(car=lancer, renter=Gwapo, payment="successful", sale_price=100.00, rental_location=davao, start_date="2024-02-13", end_date="2025-02-25"),
+    Rental(car=Civic, renter=jieben, payment="successful", sale_price=100.00, rental_location=cdo, start_date="2025-02-13", end_date="2029-02-25"),
+    Rental(car=misyobibi, renter=Benjie2, payment="successful", sale_price=100.00, rental_location=malaybalay, start_date="2020-02-13", end_date="2028-02-25"),
+]
+Rental.objects.bulk_create(rentals)
